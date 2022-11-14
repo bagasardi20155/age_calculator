@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:age_calculator/components/custom_card.dart';
 import 'package:age_calculator/components/round_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:age_calculator/constanst.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({Key? key}) : super(key: key);
@@ -41,10 +42,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                 children: [
                                   Text(
                                     'Date of Birth',
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w300,
-                                    ),
+                                    style: labelTextStyle,
                                   )
                                 ],
                               ),
@@ -61,11 +59,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                   flex: 2,
                                   child: Text(
                                     'dd - mm - yyy',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontFamily: 'sans-serif',
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: dateTextStyle,
                                     textAlign: TextAlign.end,
                                   ),
                                 ),
@@ -113,10 +107,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                 children: [
                                   Text(
                                     'Age the Date of',
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w300,
-                                    ),
+                                    style: labelTextStyle,
                                   )
                                 ],
                               ),
@@ -133,11 +124,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                   flex: 2,
                                   child: Text(
                                     'dd - mm - yyy',
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontFamily: 'sans-serif',
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style: dateTextStyle,
                                     textAlign: TextAlign.end,
                                   ),
                                 ),
@@ -171,23 +158,28 @@ class _CalculatorPageState extends State<CalculatorPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 10.0),
-                      // width: double.infinity,
-                      height: 80.0,
-                      color: Color(0xFFEB1555),
-                      child: Center(
-                        child: Text(
-                          'Submit',
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 40.0, right: 40.0),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                    child: GestureDetector(
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 10.0),
+                        height: 80.0,
+                        color: Color(0xFFEB1555),
+                        child: Center(
+                          child: Text(
+                            'Submit',
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  )
                 ),
               ],
             ),
@@ -201,14 +193,84 @@ class _CalculatorPageState extends State<CalculatorPage> {
                     onPress: () {},
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
-                          'AGE',
-                          style: TextStyle(
-                            fontSize: 40.0,
-                            color: Color(0xFF8D8E98),
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(top: 10.0),
+                                margin: EdgeInsets.only(bottom: 15.0),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Your Age',
+                                      style: numberTextStyle,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
+                        
+                        Expanded(
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                                    textBaseline: TextBaseline.alphabetic,
+                                    children: [
+                                      Text(
+                                        '60',
+                                        style: numberTextStyle,
+                                      ),
+                                      const Text(
+                                        'year(s)',
+                                        style: resultTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                  
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                                    textBaseline: TextBaseline.alphabetic,
+                                    children: [
+                                      Text(
+                                        '60',
+                                        style: numberTextStyle,
+                                      ),
+                                      const Text(
+                                        'month(s)',
+                                        style: resultTextStyle,
+                                      ),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                                    textBaseline: TextBaseline.alphabetic,
+                                    children: [
+                                      Text(
+                                        '60',
+                                        style: numberTextStyle,
+                                      ),
+                                      const Text(
+                                        'day(s)',
+                                        style: resultTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   )
