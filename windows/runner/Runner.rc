@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "age_calculator" "\0"
+            VALUE "FileDescription", "calculator_age" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "age_calculator" "\0"
+            VALUE "InternalName", "calculator_age" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "age_calculator.exe" "\0"
-            VALUE "ProductName", "age_calculator" "\0"
+            VALUE "OriginalFilename", "calculator_age.exe" "\0"
+            VALUE "ProductName", "calculator_age" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

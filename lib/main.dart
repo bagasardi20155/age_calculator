@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:age_calculator/screens/calculator_page.dart';
+import 'package:calculator_age/screens/calculator_page.dart';
 
 void main() {
   runApp(const MyApp());

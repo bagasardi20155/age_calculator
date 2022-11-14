@@ -1,6 +1,6 @@
 {
-    "name": "age_calculator",
-    "short_name": "age_calculator",
+    "name": "calculator_age",
+    "short_name": "calculator_age",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

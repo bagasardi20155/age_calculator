@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:age_calculator/components/custom_card.dart';
-import 'package:age_calculator/components/round_icon_button.dart';
+import 'package:calculator_age/components/custom_card.dart';
+import 'package:calculator_age/components/round_icon_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:age_calculator/constanst.dart';
+import 'package:calculator_age/constanst.dart';
+import 'package:calculator_age/calculator.dart';
+import 'package:intl/intl.dart';
+import 'package:age_calculator/age_calculator.dart';
+
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({Key? key}) : super(key: key);
@@ -12,7 +16,16 @@ class CalculatorPage extends StatefulWidget {
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
+  final DateFormat formatter = DateFormat('dd-MM-yyyy');
   final DateTime date = DateTime.now();
+  
+  DateTime? _dateTime1;
+  DateTime? _dateTime2;
+  DateDuration? _totalTime;
+
+  String hari = '12';
+  String bulan = '12';
+  String tahun = '12';
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +71,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                 Expanded(
                                   flex: 2,
                                   child: Text(
-                                    'dd - mm - yyy',
+                                    (_dateTime1 != null)
+                                    ? DateFormat('dd - MM - yyyy').format(_dateTime1!)
+                                    : formatter.format(date),
                                     style: dateTextStyle,
                                     textAlign: TextAlign.end,
                                   ),
@@ -73,7 +88,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                         initialDate: date, 
                                         firstDate: DateTime(1500),
                                         lastDate: DateTime(2150),
-                                      );
+                                      ).then((date){
+                                        setState(() {
+                                          _dateTime1 = date;
+                                        });
+                                      });
                                     },
                                   )
                                 ),
@@ -123,7 +142,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                 Expanded(
                                   flex: 2,
                                   child: Text(
-                                    'dd - mm - yyy',
+                                    (_dateTime2 != null)
+                                    ? DateFormat('dd - MM - yyyy').format(_dateTime1!)
+                                    : formatter.format(date),
                                     style: dateTextStyle,
                                     textAlign: TextAlign.end,
                                   ),
@@ -138,7 +159,11 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                         initialDate: date, 
                                         firstDate: DateTime(1500),
                                         lastDate: DateTime(2150),
-                                      );
+                                      ).then((date){
+                                        setState(() {
+                                          _dateTime2 = date;
+                                        });
+                                      });
                                     },
                                   )
                                 ),
@@ -178,6 +203,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           ),
                         ),
                       ),
+                      onTap: () {
+                        Calculator cal = Calculator(dateTime1: _dateTime1, dateTime2: _dateTime2,);
+
+                        _totalTime = cal.result();
+                        hari = _totalTime!.days.toString();
+                        bulan = _totalTime!.months.toString();
+                        tahun = _totalTime!.years.toString();
+                      },
                     ),
                   )
                 ),
@@ -225,7 +258,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                     textBaseline: TextBaseline.alphabetic,
                                     children: [
                                       Text(
-                                        '60',
+                                        tahun,
                                         style: numberTextStyle,
                                       ),
                                       const Text(
@@ -241,7 +274,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                     textBaseline: TextBaseline.alphabetic,
                                     children: [
                                       Text(
-                                        '60',
+                                        bulan,
                                         style: numberTextStyle,
                                       ),
                                       const Text(
@@ -257,7 +290,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                                     textBaseline: TextBaseline.alphabetic,
                                     children: [
                                       Text(
-                                        '60',
+                                        hari,
                                         style: numberTextStyle,
                                       ),
                                       const Text(
